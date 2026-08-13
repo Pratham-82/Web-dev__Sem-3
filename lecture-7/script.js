@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
   else if(req.method=="POST" && req.url=="/users"){
     let body = '';
     req.on('data', chunk => {
-      body += chunk.toString();
+      body += chunk;
     });
     req.on('end', () => {
       const newUser = JSON.parse(body);
