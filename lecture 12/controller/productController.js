@@ -44,10 +44,26 @@ const deleteProduct=(req,res)=>{
     res.json({success:true,result});
 }
 
+const searchProducts=(req,res)=>{
+    const {name,category,price}=req.query;
+    let result;
+    if(name){
+        result=result.filter((product)=>product.name.includes(name));
+    }
+    if(category){
+        result=result.filter((product)=>product.category===category);
+    }
+    if(price){
+        result=result.filter((product)=>product.price===parseFloat(price));
+    }
+    res.json({success:true,result});
+}
+
 module.exports={
     getProducts,
     getProductById,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    searchProducts
 }
