@@ -7,12 +7,24 @@ const loginMiddleware = (req, res, next) => {
     console.log("request url: ", req.url);
     next();
 }
-app.use(loginMiddleware);
+
+const apicheckMiddleware = (req, res, next) => {
+    if(req.query.API_KEY === '12345') {
+        next();
+    } else {
+        res.status(403).send('Forbidden: Invalid API Key');
+    }
+}
+
+// app.use(loginMiddleware);
+// app.use(apicheckMiddleware);
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-app.get('/students', (req, res) => {
+app.get('/students',loginMiddleware, apicheckMiddleware, (req, res) => {
   res.send('hello students');
 });
 
