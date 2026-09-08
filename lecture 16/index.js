@@ -16,10 +16,15 @@ const apicheckMiddleware = (req, res, next) => {
     }
 }
 
+const loggerMiddleware = (req, res, next) => {
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url} , time: ${new Date().toISOString()}`  );
+  next();
+};
+
+
 // app.use(loginMiddleware);
 // app.use(apicheckMiddleware);
-
-
+app.use(loggerMiddleware);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
