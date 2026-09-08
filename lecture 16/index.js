@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const port = 3000;
 
 const loginMiddleware = (req, res, next) => {
@@ -25,6 +26,7 @@ const loggerMiddleware = (req, res, next) => {
 // app.use(loginMiddleware);
 // app.use(apicheckMiddleware);
 app.use(loggerMiddleware);
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
