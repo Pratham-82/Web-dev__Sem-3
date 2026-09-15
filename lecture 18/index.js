@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
     let age = 20;
     try {
         if (age < 18) {
@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
         }
         res.send('welcome to the home page');
     } catch (error) {
-        res.status(400).send(error.message);
+        next(error);
     }
 });
 
