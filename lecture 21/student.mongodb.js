@@ -55,4 +55,6 @@ use("collegeDB")
 // ])
 
 // db.students.find({age: {$gt: 20}})
-db.students.find({$or: [{ age: { $lt: 20 } }, { course: "Mathematics" }]})
+// db.students.find({$or: [{ age: { $lt: 20 } }, { course: "Mathematics" }]})
+
+db.students.find().skip(1).limit(1)
